@@ -1,5 +1,6 @@
 package app;
 
+import db.DatabaseManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -11,6 +12,7 @@ import view.InventoryView;
 public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
+        DatabaseManager.initializeDatabase();
         TabPane tabPane = new TabPane();
 
         Tab billingTab = new Tab("Billing");

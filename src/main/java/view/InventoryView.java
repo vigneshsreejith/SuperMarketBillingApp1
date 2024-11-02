@@ -1,7 +1,9 @@
 package view;
 
+import db.DatabaseManager;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import model.Product;
 
 public class InventoryView {
     private final VBox view;
@@ -39,6 +41,7 @@ public class InventoryView {
 
     private void loadInventory() {
         inventoryList.getItems().clear();
+        DatabaseManager.getAllProducts();
         // This method can be implemented to fetch and display existing products
     }
 
@@ -59,7 +62,8 @@ public class InventoryView {
             int quantity = Integer.parseInt(quantityStr);
 
             // Here, add the logic to save the product to the database
-
+            Product product = new Product(1, name, price, quantity, barcode);
+            DatabaseManager.addProduct(product);
             inventoryList.getItems().add(name + " - $" + price + " (Qty: " + quantity + ")");
             nameField.clear();
             priceField.clear();
